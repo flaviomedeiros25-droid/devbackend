@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "b1a2c3d4-e5f6-7890-abcd-1234567890ab",
+		"name": "DevShowcase API - Postman Collection",
+		"description": "Coleção completa de requisições para a API DevShowcase (Etapa 1: Perfis, Tecnologias, Projetos e Feedbacks).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/health",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "health"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profiles (Perfis)",
+			"item": [
+				{
+					"name": "1. Cadastrar Perfil (POST /api/profiles)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.id) {",
+									"    pm.environment.set('profileId', jsonData.id);",
+									"    pm.collectionVariables.set('profileId', jsonData.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Carlos Silva\",\n  \"email\": \"carlos.silva@devshowcase.com\",\n  \"bio\": \"Desenvolvedor Full Stack com 4 anos de experiência em Node.js e React.\",\n  \"githubUrl\": \"https://github.com/carlossilva-dev\",\n  \"linkedinUrl\": \"https://linkedin.com/in/carlossilva-dev\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/profiles",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "profiles"]
+						},
+						"description": "Cadastra um novo perfil de desenvolvedor com validações de e-mail e URLs."
+					},
+					"response": []
+				},
+				{
+					"name": "2. Buscar Perfil por ID (GET /api/profiles/:id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/profiles/{{profileId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "profiles", "{{profileId}}"]
+						},
+						"description": "Retorna os detalhes do perfil e seus projetos associados."
+					},
+					"response": []
+				},
+				{
+					"name": "3. Listar Todos os Perfis (GET /api/profiles)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/profiles",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "profiles"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Technologies (Tecnologias)",
+			"item": [
+				{
+					"name": "1. Cadastrar Tecnologia (POST /api/technologies)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.id) {",
+									"    pm.environment.set('techId', jsonData.id);",
+									"    pm.collectionVariables.set('techId', jsonData.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"TypeScript\",\n  \"category\": \"Linguagem de Programação\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/technologies",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "technologies"]
+						},
+						"description": "Cadastra uma nova tecnologia."
+					},
+					"response": []
+				},
+				{
+					"name": "2. Listar Tecnologias (GET /api/technologies)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/technologies",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "technologies"]
+						},
+						"description": "Lista todas as tecnologias cadastradas no sistema."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects (Projetos)",
+			"item": [
+				{
+					"name": "1. Cadastrar Projeto (POST /api/projects)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if (jsonData.id) {",
+									"    pm.environment.set('projectId', jsonData.id);",
+									"    pm.collectionVariables.set('projectId', jsonData.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"DevShowcase API\",\n  \"description\": \"Plataforma de exibição de projetos para desenvolvedores com backend relacional.\",\n  \"repositoryUrl\": \"https://github.com/carlossilva-dev/devshowcase-api\",\n  \"deployUrl\": \"https://devshowcase.up.railway.app\",\n  \"profileId\": \"{{profileId}}\",\n  \"technologyIds\": [\n    \"{{techId}}\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/projects",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "projects"]
+						},
+						"description": "Cadastra um novo projeto associado a um perfil e N tecnologias."
+					},
+					"response": []
+				},
+				{
+					"name": "2. Listar Projetos (GET /api/projects)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/projects",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "projects"]
+						},
+						"description": "Retorna todos os projetos cadastrados com informações de autor e tecnologias."
+					},
+					"response": []
+				},
+				{
+					"name": "3. Cadastrar Feedback no Projeto (POST /api/projects/:id/feedbacks)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"author\": \"Prof. Avaliador\",\n  \"comment\": \"Excelente implementação das rotas e validações com Zod!\",\n  \"rating\": 5\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/projects/{{projectId}}/feedbacks",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "projects", "{{projectId}}", "feedbacks"]
+						},
+						"description": "Adiciona um feedback/opinião para um projeto específico."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "profileId",
+			"value": ""
+		},
+		{
+			"key": "techId",
+			"value": ""
+		},
+		{
+			"key": "projectId",
+			"value": ""
+		}
+	]
+}
