@@ -101,15 +101,14 @@ Crie um documento Word/Google Docs, salve como **PDF** e inclua os dados no mode
                PLATAFORMA DEVSHOWCASE API - ETAPA 1
 ====================================================================
 
-Aluno(a): [Seu Nome Completo]
-Curso: [Seu Curso]
-Data: [Data de Entrega]
+Aluno(a): Flávio Medeiros
+Data: 23/09/2026
 
 --------------------------------------------------------------------
 1. LINK DO REPOSITÓRIO NO GITHUB (CÓDIGO-FONTE):
-https://github.com/SEU_USUARIO/devshowcase-api
+https://github.com/flaviomedeiros25-droid/devbackend.git
 
 2. LINK DO VÍDEO NO YOUTUBE (NÃO LISTADO):
-https://youtu.be/SEU_CODIGO_DO_VIDEO
+https://youtu.be/COLOQUE_SEU_LINK_AQUI
 --------------------------------------------------------------------
 ```

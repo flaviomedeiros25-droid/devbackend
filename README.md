@@ -45,8 +45,8 @@ API RESTful desenvolvida em **Node.js**, **Express**, **TypeScript**, **Prisma O
 
 ### 1. Clonar o repositório e instalar dependências
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
-cd "atividade 1"
+git clone https://github.com/flaviomedeiros25-droid/devbackend.git
+cd devbackend
 npm install
 ```
 
